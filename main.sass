@@ -1,0 +1,372 @@
+@import "vendor/dist/bourbon"
+
+$brand-green: #27AE60
+$brand-blue: #3498DB
+$brand-dark-blue: darken(#2C3E50, 20%)
+$brand-purple: #9B59B6
+$brand-red: #E74C3C
+$brand-yellow: #F1C40F
+$border-grey: #E0E0E0
+$z-index-alpha: 9999
+
+$font-family-serif: 'Vollkorn', serif
+$font-family-sans: Gotham-Book, Helvetica, Arial, sans-serif
+
+@font-face
+    font-family: Gotham-Bold
+    font-weight: 600
+    font-style: normal
+    src: url("../fonts/Gotham-Bold/Gotham-Bold.eot")
+    src: url("../fonts/Gotham-Bold/Gotham-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Gotham-Bold/Gotham-Bold.woff") format("woff"), url("../fonts/Gotham-Bold/Gotham-Bold.ttf") format("truetype"), url("../fonts/Gotham-Bold/Gotham-Bold.svg#Gotham-Bold") format("svg")
+
+@font-face
+    font-family: Gotham-Book
+    font-weight: 400
+    font-style: normal
+    src: url("../fonts/Gotham-Book/Gotham-Book.eot")
+    src: url("../fonts/Gotham-Book/Gotham-Book.eot?#iefix") format("embedded-opentype"), url("../fonts/Gotham-Book/Gotham-Book.woff") format("woff"), url("../fonts/Gotham-Book/Gotham-Book.ttf") format("truetype"), url("../fonts/Gotham-Book/Gotham-Book.svg#Gotham-Book") format("svg")
+
+@font-face
+    font-family: Gotham-Thin
+    font-weight: 100
+    font-style: normal
+    src: url("../fonts/Gotham-Thin/Gotham-Thin.eot")
+    src: url("../fonts/Gotham-Thin/Gotham-Thin.eot?#iefix") format("embedded-opentype"), url("../fonts/Gotham-Thin/Gotham-Thin.woff") format("woff"), url("../fonts/Gotham-Thin/Gotham-Thin.ttf") format("truetype"), url("../fonts/Gotham-Thin/Gotham-Thin.svg#Gotham-Thin") format("svg")
+
+html, body
+    width: auto
+    height: 100%
+    min-height: 100%
+    margin: 0
+    padding: 0
+    background: black
+    font-size: 100%
+    font-family: $font-family-serif
+    line-height: 1.618
+    -webkit-font-smoothing: antialiased
+
+ul, ol
+    margin: 0
+    padding: 0
+    list-style-type: none
+
+a
+    text-decoration: none
+
+.btn-hamburger
+    z-index: $z-index-alpha + 2
+    position: fixed
+    top: 0
+    right: 0
+    width: 50px
+    height: 50px
+    display: block
+    background: transparent
+
+.menu-icon
+    position: fixed
+    z-index: $z-index-alpha
+    top: 18px
+    right: 15px
+    height: 2px
+    width: 20px
+    background: white
+    border-radius: 999px
+
+    &:before
+        top: 6px
+
+    &:after
+        top: 12px
+
+    &:before, &:after
+        position: absolute
+        display: inline-block
+        content: ''
+        height: 2px
+        width: 20px
+        right: 0
+        background: white
+        border-radius: 999px
+
+.animate-menu-icon-in
+    @include transition(all, linear, 200ms)
+    background: transparent
+
+    &:before
+        @include transition(all, linear, 300ms)
+        @include transform(rotate(45deg))
+        top: 12px
+
+    &:after
+        @include transition(all, linear, 300ms)
+        @include transform(rotate(-45deg))
+
+.animate-menu-icon-out
+    @include transition(all, linear, 200ms)
+
+    &:before
+        @include transition(all, linear, 300ms)
+        @include transform(rotate(0deg))
+        top: 6px
+
+    &:after
+        @include transition(all, linear, 300ms)
+        @include transform(roate(0deg))
+
+.news-feed
+    max-width: 68em
+    margin-top: 60px
+    margin-left: auto
+    margin-right: auto
+
+    ul
+        list-style-type: none
+
+        li
+            padding: 20px
+            display: block
+            border-bottom: 1px solid $border-grey
+
+            a
+                @include transition(color, linear, 200ms)
+                color: black
+                font-size: em(22)
+                text-decoration: none
+
+                &:hover
+                    color: $brand-green
+
+.home
+    .science, .atheism, .philosophy, .technology, .world-news
+        @include backface-visibility(hidden)
+        position: absolute
+        top: 0
+        width: 25%
+        height: 100%
+        min-height: 100%
+        overflow-x: hidden
+        background-size: cover
+        background-repeat: no-repeat
+        background-position: 50% 50%
+
+        &:after
+            position: absolute
+            z-index: 1
+            display: block
+            content: ''
+            height: 100%
+            width: 100%
+            left: 0
+            bottom: 0
+            background: -webkit-linear-gradient(rgba($brand-dark-blue, 0.3), rgba($brand-dark-blue, 1.0))
+
+        &:hover
+            //.btn-read-more
+                //@include transition(transform, linear, 300ms)
+                //@include transform(translate(-50%, -40px))
+                //will-change: transform
+                //opacity: 1
+
+    .science
+        left: 0
+        background-image: url('../img/bg-science.jpg')
+
+    .atheism
+        left: 25%
+        background-image: url('../img/bg-atheism.jpg')
+
+    .philosophy
+        left: 50%
+        background-image: url('../img/bg-philosophy.jpg')
+
+    .technology
+        left: 75%
+        background-image: url('../img/bg-technology.jpg')
+
+    .world-news
+        left: 100%
+        background-image: url('../img/bg-world-news.jpg')
+
+.section-title
+    position: relative
+    top: 100px
+    display: block
+    z-index: $z-index-alpha
+    color: white
+    text-align: center
+    text-shadow: 0 1px 2px rgba(black, 0.2)
+    font:
+        family: $font-family-serif
+        size: em(28)
+        style: italic
+
+    &--sign-up
+        font:
+            family: $font-family-sans
+            style: normal
+
+// Homepage
+.content
+    position: absolute
+    display: none
+    z-index: $z-index-alpha
+    bottom: 0
+    left: 0
+    right: 0
+    min-height: 400px
+    margin-bottom: 40px
+    padding: 20px
+
+    ul
+        li
+
+            a
+                display: block
+                padding: 10px 0
+                color: darken(white, 5%)
+                font:
+                    size: em(13)
+                    family: $font-family-sans
+
+.btn
+    display: inline-block
+    margin-bottom: 0
+    text-align: center
+    vertical-align: middle
+    cursor: pointer
+    border: transparent
+    white-space: nowrap
+    text-decoration: none
+    margin-bottom: 10px
+
+    &-read-more
+        @include transition(all, linear, 300ms)
+        @include transform(translateX(-50%))
+        position: absolute
+        // opacity: 0
+        z-index: $z-index-alpha
+        left: 50%
+        bottom: 0
+        color: white
+        padding: 10px 16px
+        border-radius: 999px
+        text-transform: uppercase
+        border: 1px solid rgba(white, 0.4)
+        font:
+            size: em(10)
+            family: $font-family-sans
+            weight: 700
+
+        &:hover
+            color: white
+            background: $brand-yellow
+            border: 1px solid $brand-yellow
+
+    &-sign-up
+        @include transform(translateX(-50%))
+        position: absolute
+        z-index: $z-index-alpha
+        left: 50%
+        width: 100%
+        color: white
+        padding: 10px 16px
+        margin-top: 10px
+        text-transform: uppercase
+        background: $brand-green
+        border-radius: 999px
+        font:
+            size: em(12)
+            family: Gotham-Bold
+
+// Loading Animation
+@include keyframes(loading)
+    0%
+        @include transform(rotate(0deg))
+
+    100%
+        @include transform(rotate(360deg))
+
+@include keyframes(animation-results-in)
+    0%
+        @include transform(translateY(100px))
+        opacity: 0
+
+    100%
+        @include transform(translateY(0deg))
+        opacity: 1
+
+@include keyframes(animate-menu-in)
+    0%
+        @include transform(translateX(325px))
+
+    100%
+        @include transform(translateX(0px))
+
+.animate-menu-in
+    @include animation(animate-menu-in $ease-in-out-quint 425ms)
+    display: block
+
+.animate-menu-out
+    @include transition(all, $ease-in-out-quint, 425ms)
+    @include transform(translateX(325px))
+
+.animate-results-in
+    @include animation(animation-results-in $ease-out-cubic 1000ms)
+    display: block
+
+.section-type
+    padding: 0
+    margin: 0
+    color: $brand-yellow
+    text-transform: uppercase
+    letter-spacing: 2px
+    font:
+        family: Gotham-Bold
+        weight: 700
+        size: em(12px)
+
+    &:after
+        position: relative
+        content: ''
+        display: block
+        width: 100%
+        height: 1px
+        background: rgba(white, 0.2)
+
+.sign-up
+    @include backface-visibility(hidden)
+    position: fixed
+    z-index: $z-index-alpha + 1 // Baaaaaaaaaad
+    top: 0
+    right: 0
+    width: 325px
+    height: 100%
+    min-height: 100%
+    overflow-x: hidden
+    background: -webkit-linear-gradient($brand-dark-blue, lighten($brand-dark-blue, 15%))
+
+.sign-up-form
+    position: relative
+    top: 100px
+    z-index: $z-index-alpha
+    width: 60%
+    margin: 0 auto
+
+    input
+        @include transition(all, linear, 200ms)
+        @include box-sizing(border-box)
+        display: block
+        width: 100%
+        padding: 10px
+        margin-bottom: 20px
+        background: transparent
+        border: 0
+        border-bottom: 1px dotted rgba(white, 0.2)
+        color: white
+        font:
+            size: em(13)
+
+        &:focus
+            outline: 0 none
+            border-color: $brand-yellow
