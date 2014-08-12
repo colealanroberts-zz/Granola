@@ -158,7 +158,6 @@ function getHomeArticleWorldNews() {
 }
 
 $(document).ready(function() {
-    console.log("Here's to my beautiful girlfriend, Paula. You're the reason I'm building this awesome thing.");
     scrollDoc();
     showMenu();
     signUp();

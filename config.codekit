@@ -20,28 +20,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/img\/bg-atheism.jpg": {
-		"fileType": 16384,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 554414,
-		"inputAbbreviatedPath": "\/img\/bg-atheism.jpg",
-		"outputAbbreviatedPath": "\/img\/bg-atheism.jpg",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/img\/bg-philosophy.jpg": {
-		"fileType": 16384,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 1.94154e+06,
-		"inputAbbreviatedPath": "\/img\/bg-philosophy.jpg",
-		"outputAbbreviatedPath": "\/img\/bg-philosophy.jpg",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
 	"\/img\/bg-science.jpg": {
 		"fileType": 16384,
 		"ignore": 0,
