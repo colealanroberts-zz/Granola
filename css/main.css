@@ -22,12 +22,14 @@
   src: url("../fonts/Gotham-Thin/Gotham-Thin.eot");
   src: url("../fonts/Gotham-Thin/Gotham-Thin.eot?#iefix") format("embedded-opentype"), url("../fonts/Gotham-Thin/Gotham-Thin.woff") format("woff"), url("../fonts/Gotham-Thin/Gotham-Thin.ttf") format("truetype"), url("../fonts/Gotham-Thin/Gotham-Thin.svg#Gotham-Thin") format("svg"); }
 html, body {
+  background-color: #080b0e;
+  background-image: -webkit-linear-gradient(#080b0e, #233140);
+  background-image: linear-gradient(#080b0e, #233140);
   width: auto;
   height: 100%;
   min-height: 100%;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
-  background: black;
   font-size: 100%;
   font-family: "Vollkorn", serif;
   line-height: 1.618;
@@ -40,6 +42,12 @@ ul, ol {
 
 a {
   text-decoration: none; }
+
+button {
+  -webkit-font-smoothing: antialiased;
+  outline: 0 none; }
+  button:focus {
+    outline: 0 none; }
 
 .btn-hamburger {
   z-index: 10001;
@@ -61,15 +69,16 @@ a {
   background: white;
   border-radius: 999px; }
   .menu-icon:before {
-    top: 6px; }
+    top: 6px;
+    width: 16px; }
   .menu-icon:after {
-    top: 12px; }
+    top: 12px;
+    width: 20px; }
   .menu-icon:before, .menu-icon:after {
     position: absolute;
     display: inline-block;
     content: "";
     height: 2px;
-    width: 20px;
     right: 0;
     background: white;
     border-radius: 999px; }
@@ -79,6 +88,8 @@ a {
   -moz-transition: all, linear, 200ms;
   transition: all, linear, 200ms;
   background: transparent; }
+  .animate-menu-icon-in:before, .animate-menu-icon-in:after {
+    width: 20px; }
   .animate-menu-icon-in:before {
     -webkit-transition: all, linear, 300ms;
     -moz-transition: all, linear, 300ms;
@@ -100,9 +111,9 @@ a {
     transform: rotate(-45deg); }
 
 .animate-menu-icon-out {
-  -webkit-transition: all, linear, 200ms;
-  -moz-transition: all, linear, 200ms;
-  transition: all, linear, 200ms; }
+  -webkit-transition: all, linear, 100ms;
+  -moz-transition: all, linear, 100ms;
+  transition: all, linear, 100ms; }
   .animate-menu-icon-out:before {
     -webkit-transition: all, linear, 300ms;
     -moz-transition: all, linear, 300ms;
@@ -123,31 +134,56 @@ a {
     -o-transform: roate(0deg);
     transform: roate(0deg); }
 
-.news-feed {
-  max-width: 68em;
-  margin-top: 60px;
-  margin-left: auto;
-  margin-right: auto; }
-  .news-feed ul {
-    list-style-type: none; }
-    .news-feed ul li {
-      padding: 20px;
-      display: block;
-      border-bottom: 1px solid #e0e0e0; }
-      .news-feed ul li a {
-        -webkit-transition: color, linear, 200ms;
-        -moz-transition: color, linear, 200ms;
-        transition: color, linear, 200ms;
-        color: black;
-        font-size: 1.375em;
-        text-decoration: none; }
-        .news-feed ul li a:hover {
-          color: #27ae60; }
+@-webkit-keyframes animate-card-in {
+  0% {
+    -webkit-transform: translateY(200px);
+    opacity: 0; }
 
-.home .science, .home .atheism, .home .philosophy, .home .technology, .home .world-news {
+  100% {
+    -webkit-transform: translateY(0px);
+    opacity: 1; } }
+@-moz-keyframes animate-card-in {
+  0% {
+    -moz-transform: translateY(200px);
+    opacity: 0; }
+
+  100% {
+    -moz-transform: translateY(0px);
+    opacity: 1; } }
+@keyframes animate-card-in {
+  0% {
+    -webkit-transform: translateY(200px);
+    -moz-transform: translateY(200px);
+    -ms-transform: translateY(200px);
+    -o-transform: translateY(200px);
+    transform: translateY(200px);
+    opacity: 0; }
+
+  100% {
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    -o-transform: translateY(0px);
+    transform: translateY(0px);
+    opacity: 1; } }
+.animate-card-in {
+  -webkit-animation: animate-card-in cubic-bezier(0.86, 0, 0.07, 1) 600ms;
+  -moz-animation: animate-card-in cubic-bezier(0.86, 0, 0.07, 1) 600ms;
+  animation: animate-card-in cubic-bezier(0.86, 0, 0.07, 1) 600ms; }
+
+.home .card {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  -webkit-will-change: translate;
+  -moz-will-change: translate;
+  will-change: translate;
   position: absolute;
+  opacity: 0;
   top: 0;
   width: 25%;
   height: 100%;
@@ -156,7 +192,7 @@ a {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%; }
-  .home .science:after, .home .atheism:after, .home .philosophy:after, .home .technology:after, .home .world-news:after {
+  .home .card:after {
     position: absolute;
     z-index: 1;
     display: block;
@@ -199,7 +235,7 @@ a {
 
 .content {
   position: absolute;
-  display: none;
+  display: block;
   z-index: 9999;
   bottom: 0;
   left: 0;
@@ -207,12 +243,15 @@ a {
   min-height: 400px;
   margin-bottom: 40px;
   padding: 20px; }
-  .content ul li a {
-    display: block;
-    padding: 10px 0;
-    color: #f2f2f2;
-    font-size: 0.8125em;
-    font-family: Gotham-Book, Helvetica, Arial, sans-serif; }
+  .content ul li {
+    position: relative;
+    display: block; }
+    .content ul li a {
+      display: inline-block;
+      padding: 10px 0;
+      color: #f2f2f2;
+      font-size: 0.8125em;
+      font-family: Gotham-Book, Helvetica, Arial, sans-serif; }
 
 .btn {
   display: inline-block;
@@ -255,7 +294,7 @@ a {
     -ms-transform: translateX(-50%);
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
-    position: absolute;
+    position: relative;
     z-index: 9999;
     left: 50%;
     width: 100%;
@@ -296,7 +335,7 @@ a {
     transform: rotate(360deg); } }
 @-webkit-keyframes animation-results-in {
   0% {
-    -webkit-transform: translateY(100px);
+    -webkit-transform: translateY(-100px);
     opacity: 0; }
 
   100% {
@@ -304,7 +343,7 @@ a {
     opacity: 1; } }
 @-moz-keyframes animation-results-in {
   0% {
-    -moz-transform: translateY(100px);
+    -moz-transform: translateY(-100px);
     opacity: 0; }
 
   100% {
@@ -312,11 +351,11 @@ a {
     opacity: 1; } }
 @keyframes animation-results-in {
   0% {
-    -webkit-transform: translateY(100px);
-    -moz-transform: translateY(100px);
-    -ms-transform: translateY(100px);
-    -o-transform: translateY(100px);
-    transform: translateY(100px);
+    -webkit-transform: translateY(-100px);
+    -moz-transform: translateY(-100px);
+    -ms-transform: translateY(-100px);
+    -o-transform: translateY(-100px);
+    transform: translateY(-100px);
     opacity: 0; }
 
   100% {
@@ -368,12 +407,6 @@ a {
   -o-transform: translateX(325px);
   transform: translateX(325px); }
 
-.animate-results-in {
-  -webkit-animation: animation-results-in cubic-bezier(0.215, 0.61, 0.355, 1) 1000ms;
-  -moz-animation: animation-results-in cubic-bezier(0.215, 0.61, 0.355, 1) 1000ms;
-  animation: animation-results-in cubic-bezier(0.215, 0.61, 0.355, 1) 1000ms;
-  display: block; }
-
 .section-type {
   padding: 0;
   margin: 0;
@@ -395,6 +428,7 @@ a {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   position: fixed;
+  display: none;
   z-index: 10000;
   top: 0;
   right: 0;
@@ -410,10 +444,10 @@ a {
   z-index: 9999;
   width: 60%;
   margin: 0 auto; }
-  .sign-up-form input {
-    -webkit-transition: all, linear, 200ms;
-    -moz-transition: all, linear, 200ms;
-    transition: all, linear, 200ms;
+  .sign-up-form .input-default {
+    -webkit-transition: border-color, linear, 200ms;
+    -moz-transition: border-color, linear, 200ms;
+    transition: border-color, linear, 200ms;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -426,6 +460,18 @@ a {
     border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
     color: white;
     font-size: 0.8125em; }
-    .sign-up-form input:focus {
+    .sign-up-form .input-default:focus {
       outline: 0 none;
       border-color: #f1c40f; }
+
+.input-is-required {
+  border-bottom: 1px dotted #e74c3c !important; }
+
+.input-filled {
+  border-bottom: 1px dotted #27ae60 !important; }
+
+.sign-up-feedback {
+  text-align: center;
+  color: #e74c3c;
+  font-size: 0.75em;
+  font-family: Gotham-Book, Helvetica, Arial, sans-serif; }

@@ -12,7 +12,7 @@
     </nav>
     <main>
         <section class="home">
-            <div class="science">
+            <div class="card science">
                 <p class="section-title">Science</p>
                 <div class="content">
                     <p class="section-type">Featured</p>
@@ -20,7 +20,7 @@
                     <a href="#" class="btn btn-read-more">Read More Articles</a>
                 </div>
             </div>
-            <div class="atheism">
+            <div class="card atheism">
                 <p class="section-title">Atheism</p>
                 <div class="content">
                     <p class="section-type">Featured</p>
@@ -28,7 +28,7 @@
                     <a href="#" class="btn btn-read-more">Read More Articles</a>
                 </div>
             </div>
-            <div class="philosophy">
+            <div class="card philosophy">
                 <p class="section-title">Philosophy</p>
                 <div class="content">
                     <p class="section-type">Featured</p>
@@ -36,7 +36,7 @@
                     <a href="#" class="btn btn-read-more">Read More Articles</a>
                 </div>
             </div>
-            <div class="technology">
+            <div class="card technology">
                 <p class="section-title">Technology</p>
                 <div class="content">
                     <p class="section-type">Featured</p>
@@ -44,7 +44,7 @@
                     <a href="#" class="btn btn-read-more">Read More Articles</a>
                 </div>
             </div>
-            <div class="world-news">
+            <div class="card world-news">
                 <p class="section-title">World News</p>
                 <div class="content">
                     <p class="section-type">Featured</p>
@@ -55,10 +55,13 @@
             <aside class="sign-up animate-menu-out">
                 <p class="section-title section-title--sign-up">Sign Up</p>
                 <div class="sign-up-form">
-                    <input type="text" placeholder="Email" id="input-user-email" autofocus>
-                    <input type="password" placeholder="Password" id="input-user-password">
-                    <input type="password" placeholder="Password Again" id="input-user-password-again">
-                    <a href="#" class="btn btn-sign-up">Sign Up</a>
+                    <form>
+                        <input type="text" name="email" placeholder="Email" id="input-user-email" autocomplete="off" class="input-default">
+                        <input type="password" name="password" placeholder="Password" id="input-user-password" autocomplete="off" class="input-default">
+                        <input type="password" name="password-again" placeholder="Password Again" id="input-user-password-again" autocomplete="off" class="input-default">
+                        <button type="submit" class="btn btn-sign-up">Sign Up</button>
+                        <p class="sign-up-feedback"></p>
+                    </form>
                 </div>
             </aside>
         </section>

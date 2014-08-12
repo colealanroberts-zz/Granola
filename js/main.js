@@ -2,16 +2,7 @@
 var HOMEPAGE_ARTICLE_LIMIT = 3;
 var HOMEPAGE_ARTICLE_CHAR_LIMIT = 140;
 var MENU_ANIMATION_DELAY = 100;
-
-function showMenu() {
-    $('.btn-hamburger').click(function() {
-        $(this).delay(MENU_ANIMATION_DELAY).queue(function() {
-            $('.sign-up').toggleClass('animate-menu-out animate-menu-in');
-            $('.menu-icon').toggleClass('animate-menu-icon-out animate-menu-icon-in');
-            $(this).dequeue();
-        });
-    });
-}
+var CARD_ANIMATE_DURATION = 300;
 
 function scrollDoc() {
     $(window).mousewheel(function(event, delta) {
@@ -21,25 +12,64 @@ function scrollDoc() {
     });
 }
 
-function collectSignUpInfo() {
-    'use strict';
+function showMenu() {
+    $('.btn-hamburger').click(function() {
+        $(this).delay(MENU_ANIMATION_DELAY).queue(function() {
+            $('.sign-up').css({display: 'block'}).toggleClass('animate-menu-out animate-menu-in');
+            $('.menu-icon').toggleClass('animate-menu-icon-out animate-menu-icon-in');
+            $(this).dequeue();
 
-    var userEmail = $('#input-user-email').val();
-    var userPassword = $('#input-user-password').val();
-    var userPasswordAgain = $('#input-user-password-again').val();
+            // Clear the text inputs when .sign-up is closed
+            if ($('.sign-up').hasClass('animate-menu-out')) {
+                $('.sign-up-feedback').text('');
+                $('.sign-up-form form input').val('');
+            }
+        });
+    });
+}
 
-    var user = {
-        userEmail: userEmail,
-        userPassword: userPassword,
-        userPasswordAgain: userPasswordAgain,
-        signUpDate: new Date()
-    };
-    console.log(user);
+function playCardAnimation() {
+    $('.card').css({opacity: 0});
+    (function _loop(i) {
+        $card = $('.card');
+        $card.eq(i).addClass('animate-card-in').css({opacity: 1});
+        setTimeout(function() {
+            _loop((i + 1) % $card.length);
+        }, CARD_ANIMATE_DURATION);
+    }(0));
+}
+
+function signUp() {
+    $('.btn-sign-up').click(function(e) {
+        var $feedback = $('.sign-up-feedback');
+        e.preventDefault();
+        var signUpFormData = $('.sign-up-form form').serializeArray();
+
+        // Log the JSON Array
+        console.log(signUpFormData); // This should be deleted once we have a url
+
+        if ($('.sign-up-form input').val().length === 0) {
+            $feedback.html('Not so fast cowboy!' + '<br>' + 'You cannot have blank fields!');
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '',
+            cache: false,
+            traditional: true,
+            data: signUpFormData,
+            dataType: 'json',
+            success: function(data, textStatus, jqXHR) {
+                $feedback.html('Successfully Posted');
+            },
+            error: function(status, error) {
+                $feedback.html("Well skippy..." + '<br>' + "we don't have a db yet!");
+            }
+        });
+    });
 }
 
 function getHomeArticleScience() {
-    $('.loading').show();
-
     $.ajax({
         url: 'http://www.reddit.com/r/science/hot.json?jsonp=?',
         type: 'GET',
@@ -47,16 +77,17 @@ function getHomeArticleScience() {
         cache: false,
         error: function() {
             console.log('Some kind of error');
-            $('.loading').hide();
         },
         success: function(data) {
-            $('.content').addClass('animate-results-in');
+            playCardAnimation();
             for (var i = 0; i < HOMEPAGE_ARTICLE_LIMIT; i++) {
                 $('.results--science').append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
             }
         }
     });
 }
+
+
 
 function getHomeArticleAtheism() {
     $.ajax({
@@ -126,9 +157,11 @@ function getHomeArticleWorldNews() {
     });
 }
 
-$(function() {
+$(document).ready(function() {
+    console.log("Here's to my beautiful girlfriend, Paula. You're the reason I'm building this awesome thing.");
     scrollDoc();
     showMenu();
+    signUp();
     getHomeArticleScience();
     getHomeArticleAtheism();
     getHomeArticlePhilosophy();

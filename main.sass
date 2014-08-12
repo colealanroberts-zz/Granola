@@ -34,12 +34,12 @@ $font-family-sans: Gotham-Book, Helvetica, Arial, sans-serif
     src: url("../fonts/Gotham-Thin/Gotham-Thin.eot?#iefix") format("embedded-opentype"), url("../fonts/Gotham-Thin/Gotham-Thin.woff") format("woff"), url("../fonts/Gotham-Thin/Gotham-Thin.ttf") format("truetype"), url("../fonts/Gotham-Thin/Gotham-Thin.svg#Gotham-Thin") format("svg")
 
 html, body
+    @include linear-gradient($brand-dark-blue, lighten($brand-dark-blue, 15%))
     width: auto
     height: 100%
     min-height: 100%
-    margin: 0
+    margin: 0 auto
     padding: 0
-    background: black
     font-size: 100%
     font-family: $font-family-serif
     line-height: 1.618
@@ -52,6 +52,13 @@ ul, ol
 
 a
     text-decoration: none
+
+button
+    -webkit-font-smoothing: antialiased
+    outline: 0 none
+
+    &:focus
+        outline: 0 none
 
 .btn-hamburger
     z-index: $z-index-alpha + 2
@@ -75,16 +82,17 @@ a
 
     &:before
         top: 6px
+        width: 16px
 
     &:after
         top: 12px
+        width: 20px
 
     &:before, &:after
         position: absolute
         display: inline-block
         content: ''
         height: 2px
-        width: 20px
         right: 0
         background: white
         border-radius: 999px
@@ -92,6 +100,9 @@ a
 .animate-menu-icon-in
     @include transition(all, linear, 200ms)
     background: transparent
+
+    &:before, &:after
+        width: 20px
 
     &:before
         @include transition(all, linear, 300ms)
@@ -103,7 +114,7 @@ a
         @include transform(rotate(-45deg))
 
 .animate-menu-icon-out
-    @include transition(all, linear, 200ms)
+    @include transition(all, linear, 100ms)
 
     &:before
         @include transition(all, linear, 300ms)
@@ -114,33 +125,28 @@ a
         @include transition(all, linear, 300ms)
         @include transform(roate(0deg))
 
-.news-feed
-    max-width: 68em
-    margin-top: 60px
-    margin-left: auto
-    margin-right: auto
+// Animations for cards
+@include keyframes(animate-card-in)
+    0%
+        @include transform(translateY(200px))
+        opacity: 0
 
-    ul
-        list-style-type: none
+    100%
+        @include transform(translateY(0px))
+        opacity: 1
 
-        li
-            padding: 20px
-            display: block
-            border-bottom: 1px solid $border-grey
-
-            a
-                @include transition(color, linear, 200ms)
-                color: black
-                font-size: em(22)
-                text-decoration: none
-
-                &:hover
-                    color: $brand-green
+.animate-card-in
+    @include animation(animate-card-in $ease-in-out-quint 600ms)
 
 .home
-    .science, .atheism, .philosophy, .technology, .world-news
+    .card
+        @include transform(translateZ(0))
         @include backface-visibility(hidden)
+        -webkit-will-change: translate
+        -moz-will-change: translate
+        will-change: translate
         position: absolute
+        opacity: 0
         top: 0
         width: 25%
         height: 100%
@@ -160,13 +166,6 @@ a
             left: 0
             bottom: 0
             background: -webkit-linear-gradient(rgba($brand-dark-blue, 0.3), rgba($brand-dark-blue, 1.0))
-
-        &:hover
-            //.btn-read-more
-                //@include transition(transform, linear, 300ms)
-                //@include transform(translate(-50%, -40px))
-                //will-change: transform
-                //opacity: 1
 
     .science
         left: 0
@@ -209,7 +208,7 @@ a
 // Homepage
 .content
     position: absolute
-    display: none
+    display: block
     z-index: $z-index-alpha
     bottom: 0
     left: 0
@@ -220,14 +219,29 @@ a
 
     ul
         li
+            position: relative
+            display: block
 
             a
-                display: block
+                display: inline-block
                 padding: 10px 0
                 color: darken(white, 5%)
                 font:
                     size: em(13)
                     family: $font-family-sans
+
+                &:hover
+
+                    //&:after
+                        /* position: relative
+                        margin-left: 10px
+                        top: -3px
+                        display: inline-block
+                        z-index: $z-index-alpha
+                        content: ''
+                        width: 12px
+                        height: 2px
+                        background: #e74c3c */
 
 .btn
     display: inline-block
@@ -244,7 +258,6 @@ a
         @include transition(all, linear, 300ms)
         @include transform(translateX(-50%))
         position: absolute
-        // opacity: 0
         z-index: $z-index-alpha
         left: 50%
         bottom: 0
@@ -265,7 +278,7 @@ a
 
     &-sign-up
         @include transform(translateX(-50%))
-        position: absolute
+        position: relative
         z-index: $z-index-alpha
         left: 50%
         width: 100%
@@ -289,7 +302,7 @@ a
 
 @include keyframes(animation-results-in)
     0%
-        @include transform(translateY(100px))
+        @include transform(translateY(-100px))
         opacity: 0
 
     100%
@@ -310,10 +323,6 @@ a
 .animate-menu-out
     @include transition(all, $ease-in-out-quint, 425ms)
     @include transform(translateX(325px))
-
-.animate-results-in
-    @include animation(animation-results-in $ease-out-cubic 1000ms)
-    display: block
 
 .section-type
     padding: 0
@@ -337,6 +346,7 @@ a
 .sign-up
     @include backface-visibility(hidden)
     position: fixed
+    display: none
     z-index: $z-index-alpha + 1 // Baaaaaaaaaad
     top: 0
     right: 0
@@ -353,8 +363,8 @@ a
     width: 60%
     margin: 0 auto
 
-    input
-        @include transition(all, linear, 200ms)
+    .input-default
+        @include transition(border-color, linear, 200ms)
         @include box-sizing(border-box)
         display: block
         width: 100%
@@ -370,3 +380,16 @@ a
         &:focus
             outline: 0 none
             border-color: $brand-yellow
+
+.input-is-required
+    border-bottom: 1px dotted $brand-red !important // We can probably remove this
+
+.input-filled
+    border-bottom: 1px dotted $brand-green !important // We can probably remove this
+
+.sign-up-feedback
+    text-align: center
+    color: $brand-red
+    font:
+        size: em(12)
+        family: $font-family-sans
