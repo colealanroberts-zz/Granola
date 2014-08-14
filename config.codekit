@@ -20,11 +20,33 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/img\/bg-atheism.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 97840,
+		"inputAbbreviatedPath": "\/img\/bg-atheism.jpg",
+		"outputAbbreviatedPath": "\/img\/bg-atheism.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/bg-philosophy.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 170310,
+		"inputAbbreviatedPath": "\/img\/bg-philosophy.jpg",
+		"outputAbbreviatedPath": "\/img\/bg-philosophy.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/img\/bg-science.jpg": {
 		"fileType": 16384,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 8.79734e+06,
+		"initialSize": 148775,
 		"inputAbbreviatedPath": "\/img\/bg-science.jpg",
 		"outputAbbreviatedPath": "\/img\/bg-science.jpg",
 		"outputPathIsOutsideProject": 0,
@@ -35,7 +57,7 @@
 		"fileType": 16384,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 1.07384e+07,
+		"initialSize": 66955,
 		"inputAbbreviatedPath": "\/img\/bg-technology.jpg",
 		"outputAbbreviatedPath": "\/img\/bg-technology.jpg",
 		"outputPathIsOutsideProject": 0,
@@ -46,7 +68,7 @@
 		"fileType": 16384,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 2.37006e+06,
+		"initialSize": 161739,
 		"inputAbbreviatedPath": "\/img\/bg-world-news.jpg",
 		"outputAbbreviatedPath": "\/img\/bg-world-news.jpg",
 		"outputPathIsOutsideProject": 0,
@@ -110,6 +132,15 @@
 		"shouldRunAutoprefixer": 0,
 		"shouldRunBless": 0,
 		"useLibsass": false
+		},
+	"\/php\/sign-up.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/php\/sign-up.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
 		},
 	"\/vendor\/dist\/_bourbon-deprecated-upcoming.scss": {
 		"createSourceMap": 0,
@@ -1391,7 +1422,7 @@
 	"javascriptCreateSourceMap": 1,
 	"javascriptOutputStyle": 1,
 	"javascriptSyntaxCheckerStyle": 1,
-	"jsCheckerReservedNamesString": "",
+	"jsCheckerReservedNamesString": "alert, console",
 	"jsHintFlags2": {
 		"asi": {
 			"active": 0,
@@ -1422,7 +1453,7 @@
 			"flagValue": -1
 			},
 		"debug": {
-			"active": 0,
+			"active": 1,
 			"flagValue": -1
 			},
 		"devel": {

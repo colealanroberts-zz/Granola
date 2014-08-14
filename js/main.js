@@ -57,8 +57,9 @@ function signUp() {
             url: '',
             cache: false,
             traditional: true,
-            data: signUpFormData,
+            data: JSON.stringify(signUpFormData),
             dataType: 'json',
+            contentType: "application/json; charset=utf-8",
             success: function(data, textStatus, jqXHR) {
                 $feedback.html('Successfully Posted');
             },
@@ -69,7 +70,7 @@ function signUp() {
     });
 }
 
-function getHomeArticleScience() {
+function getHomeArticleScience(curlIndex) {
     $.ajax({
         url: 'http://www.reddit.com/r/science/hot.json?jsonp=?',
         type: 'GET',
@@ -78,16 +79,24 @@ function getHomeArticleScience() {
         error: function() {
             console.log('Some kind of error');
         },
-        success: function(data) {
+        success: function(data, curlIndex) {
             playCardAnimation();
+            var collectionLength = data.data.children.length;
+            console.log(collectionLength);
             for (var i = 0; i < HOMEPAGE_ARTICLE_LIMIT; i++) {
                 $('.results--science').append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
+                curlIndex = i + HOMEPAGE_ARTICLE_LIMIT;
             }
+            $('.science .btn-read-more').click(function() {
+                $('.science--results').empty();
+                for (var i = curlIndex; i < curlIndex + HOMEPAGE_ARTICLE_LIMIT && curlIndex <= collectionLength; i++) {
+                    $('.results--science').append('<li><a href="' + data.data.children[i].data.url + '">' + curlIndex + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
+                }
+                curlIndex = i + HOMEPAGE_ARTICLE_LIMIT;
+            });
         }
     });
 }
-
-
 
 function getHomeArticleAtheism() {
     $.ajax({
