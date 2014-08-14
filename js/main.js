@@ -1,5 +1,6 @@
 // Consts
 var HOMEPAGE_ARTICLE_LIMIT = 3;
+var ARTICLE_REQUEST_AMOUNT = 100;
 var HOMEPAGE_ARTICLE_CHAR_LIMIT = 140;
 var MENU_ANIMATION_DELAY = 100;
 var CARD_ANIMATE_DURATION = 300;
@@ -72,7 +73,7 @@ function signUp() {
 
 function getHomeArticleScience(curlIndex) {
     $.ajax({
-        url: 'http://www.reddit.com/r/science/hot.json?jsonp=?',
+        url: 'http://www.reddit.com/r/science/hot.json?' + 'limit=' + ARTICLE_REQUEST_AMOUNT + '&jsonp=?',
         type: 'GET',
         dataType: 'jsonp',
         cache: false,
@@ -104,7 +105,7 @@ function getHomeArticleScience(curlIndex) {
 
 function getHomeArticleAtheism() {
     $.ajax({
-        url: 'http://www.reddit.com/r/atheism/hot.json?jsonp=?',
+        url: 'http://www.reddit.com/r/atheism/hot.json?' + 'limit=' + ARTICLE_REQUEST_AMOUNT + '&jsonp=?',
         type: 'GET',
         dataType: 'jsonp',
         cache: false,
@@ -136,7 +137,7 @@ function getHomeArticleAtheism() {
 
 function getHomeArticlePhilosophy() {
     $.ajax({
-        url: 'http://www.reddit.com/r/philosophy/hot.json?jsonp=?',
+        url: 'http://www.reddit.com/r/philosophy/hot.json?' + 'limit=' + ARTICLE_REQUEST_AMOUNT + '&jsonp=?',
         type: 'GET',
         dataType: 'jsonp',
         cache: false,
@@ -168,7 +169,7 @@ function getHomeArticlePhilosophy() {
 
 function getHomeArticleTechnology() {
     $.ajax({
-        url: 'http://www.reddit.com/r/technology/hot.json?jsonp=?',
+        url: 'http://www.reddit.com/r/technology/hot.json?' + 'limit=' + ARTICLE_REQUEST_AMOUNT + '&jsonp=?',
         type: 'GET',
         dataType: 'jsonp',
         cache: false,
@@ -200,7 +201,7 @@ function getHomeArticleTechnology() {
 
 function getHomeArticleWorldNews() {
     $.ajax({
-        url: 'http://www.reddit.com/r/worldnews/hot.json?jsonp=?',
+        url: 'http://www.reddit.com/r/worldnews/hot.json?' + 'limit=' + ARTICLE_REQUEST_AMOUNT + '&jsonp=?',
         type: 'GET',
         dataType: 'jsonp',
         cache: false,
