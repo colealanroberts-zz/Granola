@@ -21,11 +21,48 @@
   font-style: normal;
   src: url("../fonts/Gotham-Thin/Gotham-Thin.eot");
   src: url("../fonts/Gotham-Thin/Gotham-Thin.eot?#iefix") format("embedded-opentype"), url("../fonts/Gotham-Thin/Gotham-Thin.woff") format("woff"), url("../fonts/Gotham-Thin/Gotham-Thin.ttf") format("truetype"), url("../fonts/Gotham-Thin/Gotham-Thin.svg#Gotham-Thin") format("svg"); }
+@-webkit-keyframes animation-results-out {
+  from {
+    -webkit-transform: translateX(80px);
+    opacity: 0; }
+
+  to {
+    -webkit-transform: translateX(0px);
+    opacity: 1; } }
+@-moz-keyframes animation-results-out {
+  from {
+    -moz-transform: translateX(80px);
+    opacity: 0; }
+
+  to {
+    -moz-transform: translateX(0px);
+    opacity: 1; } }
+@keyframes animation-results-out {
+  from {
+    -webkit-transform: translateX(80px);
+    -moz-transform: translateX(80px);
+    -ms-transform: translateX(80px);
+    -o-transform: translateX(80px);
+    transform: translateX(80px);
+    opacity: 0; }
+
+  to {
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    -o-transform: translateX(0px);
+    transform: translateX(0px);
+    opacity: 1; } }
+.animate-results-out {
+  -webkit-animation: animation-results-out cubic-bezier(0.86, 0, 0.07, 1) 325ms;
+  -moz-animation: animation-results-out cubic-bezier(0.86, 0, 0.07, 1) 325ms;
+  animation: animation-results-out cubic-bezier(0.86, 0, 0.07, 1) 325ms; }
+
 html, body {
   background-color: #080b0e;
   background-image: -webkit-linear-gradient(#080b0e, #233140);
   background-image: linear-gradient(#080b0e, #233140);
-  width: auto;
+  width: 100%;
   height: 100%;
   min-height: 100%;
   margin: 0 auto;
@@ -195,10 +232,10 @@ button {
   .home .card:after {
     position: absolute;
     z-index: 1;
-    display: block;
     content: "";
     height: 100%;
     width: 100%;
+    min-width: 100%;
     left: 0;
     bottom: 0;
     background: -webkit-linear-gradient(rgba(8, 11, 14, 0.3), #080b0e); }

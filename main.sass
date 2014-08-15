@@ -33,9 +33,21 @@ $font-family-sans: Gotham-Book, Helvetica, Arial, sans-serif
     src: url("../fonts/Gotham-Thin/Gotham-Thin.eot")
     src: url("../fonts/Gotham-Thin/Gotham-Thin.eot?#iefix") format("embedded-opentype"), url("../fonts/Gotham-Thin/Gotham-Thin.woff") format("woff"), url("../fonts/Gotham-Thin/Gotham-Thin.ttf") format("truetype"), url("../fonts/Gotham-Thin/Gotham-Thin.svg#Gotham-Thin") format("svg")
 
+@include keyframes(animation-results-out)
+    from
+        @include transform(translateX(80px))
+        opacity: 0
+
+    to
+        @include transform(translateX(0px))
+        opacity: 1
+
+.animate-results-out
+    @include animation(animation-results-out $ease-in-out-quint 325ms)
+
 html, body
     @include linear-gradient($brand-dark-blue, lighten($brand-dark-blue, 15%))
-    width: auto
+    width: 100%
     height: 100%
     min-height: 100%
     margin: 0 auto
@@ -159,10 +171,10 @@ button
         &:after
             position: absolute
             z-index: 1
-            display: block
             content: ''
             height: 100%
             width: 100%
+            min-width: 100%
             left: 0
             bottom: 0
             background: -webkit-linear-gradient(rgba($brand-dark-blue, 0.3), rgba($brand-dark-blue, 1.0))
@@ -205,6 +217,8 @@ button
             family: $font-family-sans
             style: normal
 
+
+
 // Homepage
 .content
     position: absolute
@@ -229,19 +243,6 @@ button
                 font:
                     size: em(13)
                     family: $font-family-sans
-
-                &:hover
-
-                    //&:after
-                        /* position: relative
-                        margin-left: 10px
-                        top: -3px
-                        display: inline-block
-                        z-index: $z-index-alpha
-                        content: ''
-                        width: 12px
-                        height: 2px
-                        background: #e74c3c */
 
 .btn
     display: inline-block

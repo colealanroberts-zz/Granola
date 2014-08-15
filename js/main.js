@@ -1,6 +1,6 @@
 // Consts
 var HOMEPAGE_ARTICLE_LIMIT = 3;
-var ARTICLE_REQUEST_AMOUNT = 100;
+var ARTICLE_REQUEST_AMOUNT = 50;
 var HOMEPAGE_ARTICLE_CHAR_LIMIT = 140;
 var MENU_ANIMATION_DELAY = 100;
 var CARD_ANIMATE_DURATION = 300;
@@ -71,7 +71,9 @@ function signUp() {
     });
 }
 
-function getHomeArticleScience(curlIndex) {
+function getHomeArticleScience() {
+    var $resultsScience = $('.results--science');
+
     $.ajax({
         url: 'http://www.reddit.com/r/science/hot.json?' + 'limit=' + ARTICLE_REQUEST_AMOUNT + '&jsonp=?',
         type: 'GET',
@@ -80,18 +82,21 @@ function getHomeArticleScience(curlIndex) {
         error: function() {
             console.log('Some kind of error');
         },
-        success: function(data, curlIndex) {
+        success: function(data) {
             playCardAnimation();
             var resultsLength = data.data.children.length;
             for (var i = 0; i < HOMEPAGE_ARTICLE_LIMIT; i++) {
-                $('.results--science').append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
+                $resultsScience.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
                 curlIndex = i;
             }
             $('.science .btn-read-more').click(function() {
-                $('.results--science').empty();
+                $resultsScience.addClass('animate-results-out').empty();
+                setTimeout(function() {
+                    $resultsScience.removeClass('animate-results-out');
+                }, 500);
                 if (curlIndex < resultsLength) {
                     for (var i = curlIndex; i < curlIndex + HOMEPAGE_ARTICLE_LIMIT; i++) {
-                    $('.results--science').append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
+                        $resultsScience.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
                     }
                     curlIndex = i + HOMEPAGE_ARTICLE_LIMIT;
                     console.log(curlIndex);
@@ -104,6 +109,8 @@ function getHomeArticleScience(curlIndex) {
 }
 
 function getHomeArticleAtheism() {
+    var $resultsAtheism = $('.results--atheism');
+
     $.ajax({
         url: 'http://www.reddit.com/r/atheism/hot.json?' + 'limit=' + ARTICLE_REQUEST_AMOUNT + '&jsonp=?',
         type: 'GET',
@@ -112,18 +119,20 @@ function getHomeArticleAtheism() {
         error: function() {
             console.log('Some kind of error');
         },
-        success: function(data, curlIndex) {
-            playCardAnimation();
+        success: function(data) {
             var resultsLength = data.data.children.length;
             for (var i = 0; i < HOMEPAGE_ARTICLE_LIMIT; i++) {
-                $('.results--atheism').append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
+                $resultsAtheism.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
                 curlIndex = i;
             }
             $('.atheism .btn-read-more').click(function() {
-                $('.results--atheism').empty();
+                $resultsAtheism.addClass('animate-results-out').empty();
+                setTimeout(function() {
+                    $resultsAtheism.removeClass('animate-results-out');
+                }, 500);
                 if (curlIndex < resultsLength) {
-                    for (var i = curlIndex; i < curlIndex + HOMEPAGE_ARTICLE_LIMIT; i++) {
-                    $('.results--atheism').append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
+                        for (var i = curlIndex; i < curlIndex + HOMEPAGE_ARTICLE_LIMIT; i++) {
+                    $resultsAtheism.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
                     }
                     curlIndex = i + HOMEPAGE_ARTICLE_LIMIT;
                     console.log(curlIndex);
@@ -136,6 +145,8 @@ function getHomeArticleAtheism() {
 }
 
 function getHomeArticlePhilosophy() {
+    var $resultsPhilosophy = $('.results--philosophy');
+
     $.ajax({
         url: 'http://www.reddit.com/r/philosophy/hot.json?' + 'limit=' + ARTICLE_REQUEST_AMOUNT + '&jsonp=?',
         type: 'GET',
@@ -144,18 +155,20 @@ function getHomeArticlePhilosophy() {
         error: function() {
             console.log('Some kind of error');
         },
-        success: function(data, curlIndex) {
-            playCardAnimation();
+        success: function(data) {
             var resultsLength = data.data.children.length;
             for (var i = 0; i < HOMEPAGE_ARTICLE_LIMIT; i++) {
-                $('.results--philosophy').append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
+                $resultsPhilosophy.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
                 curlIndex = i;
             }
             $('.philosophy .btn-read-more').click(function() {
-                $('.results--philosophy').empty();
+                $resultsPhilosophy.addClass('animate-results-out').empty();
+                setTimeout(function() {
+                    $resultsPhilosophy.removeClass('animate-results-out');
+                }, 500);
                 if (curlIndex < resultsLength) {
                     for (var i = curlIndex; i < curlIndex + HOMEPAGE_ARTICLE_LIMIT; i++) {
-                    $('.results--philosophy').append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
+                    $resultsPhilosophy.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
                     }
                     curlIndex = i + HOMEPAGE_ARTICLE_LIMIT;
                     console.log(curlIndex);
@@ -168,6 +181,8 @@ function getHomeArticlePhilosophy() {
 }
 
 function getHomeArticleTechnology() {
+    var $resultsTechnology = $('.results--technology');
+
     $.ajax({
         url: 'http://www.reddit.com/r/technology/hot.json?' + 'limit=' + ARTICLE_REQUEST_AMOUNT + '&jsonp=?',
         type: 'GET',
@@ -176,18 +191,20 @@ function getHomeArticleTechnology() {
         error: function() {
             console.log('Some kind of error');
         },
-        success: function(data, curlIndex) {
-            playCardAnimation();
+        success: function(data) {
             var resultsLength = data.data.children.length;
             for (var i = 0; i < HOMEPAGE_ARTICLE_LIMIT; i++) {
-                $('.results--technology').append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
+                $resultsTechnology.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
                 curlIndex = i;
             }
             $('.technology .btn-read-more').click(function() {
-                $('.results--technology').empty();
+                $resultsTechnology.addClass('animate-results-out').empty();
+                setTimeout(function() {
+                    $resultsTechnology.removeClass('animate-results-out');
+                }, 500);
                 if (curlIndex < resultsLength) {
                     for (var i = curlIndex; i < curlIndex + HOMEPAGE_ARTICLE_LIMIT; i++) {
-                    $('.results--technology').append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
+                    $resultsTechnology.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
                     }
                     curlIndex = i + HOMEPAGE_ARTICLE_LIMIT;
                     console.log(curlIndex);
@@ -200,6 +217,8 @@ function getHomeArticleTechnology() {
 }
 
 function getHomeArticleWorldNews() {
+    var $resultsWorldNews = $('.results--world-news');
+
     $.ajax({
         url: 'http://www.reddit.com/r/worldnews/hot.json?' + 'limit=' + ARTICLE_REQUEST_AMOUNT + '&jsonp=?',
         type: 'GET',
@@ -208,18 +227,20 @@ function getHomeArticleWorldNews() {
         error: function() {
             console.log('Some kind of error');
         },
-        success: function(data, curlIndex) {
-            playCardAnimation();
+        success: function(data) {
             var resultsLength = data.data.children.length;
             for (var i = 0; i < HOMEPAGE_ARTICLE_LIMIT; i++) {
-                $('.results--world-news').append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
+                $resultsWorldNews.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
                 curlIndex = i;
             }
             $('.world-news .btn-read-more').click(function() {
-                $('.results--world-news').empty();
+                $resultsWorldNews.addClass('animate-results-out').empty();
+                setTimeout(function() {
+                    $resultsWorldNews.removeClass('animate-results-out');
+                }, 500);
                 if (curlIndex < resultsLength) {
                     for (var i = curlIndex; i < curlIndex + HOMEPAGE_ARTICLE_LIMIT; i++) {
-                    $('.results--world-news').append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
+                    $resultsWorldNews.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
                     }
                     curlIndex = i + HOMEPAGE_ARTICLE_LIMIT;
                     console.log(curlIndex);
