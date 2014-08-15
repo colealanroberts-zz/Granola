@@ -4,6 +4,7 @@ var ARTICLE_REQUEST_AMOUNT = 50;
 var HOMEPAGE_ARTICLE_CHAR_LIMIT = 140;
 var MENU_ANIMATION_DELAY = 100;
 var CARD_ANIMATE_DURATION = 300;
+var REMOVE_RESULTS_DURATION = 325
 
 function scrollDoc() {
     $(window).mousewheel(function(event, delta) {
@@ -82,7 +83,7 @@ function getHomeArticleScience() {
         error: function() {
             console.log('Some kind of error');
         },
-        success: function(data) {
+        success: function(data, curlIndex) {
             playCardAnimation();
             var resultsLength = data.data.children.length;
             for (var i = 0; i < HOMEPAGE_ARTICLE_LIMIT; i++) {
@@ -93,7 +94,7 @@ function getHomeArticleScience() {
                 $resultsScience.addClass('animate-results-out').empty();
                 setTimeout(function() {
                     $resultsScience.removeClass('animate-results-out');
-                }, 500);
+                }, REMOVE_RESULTS_DURATION);
                 if (curlIndex < resultsLength) {
                     for (var i = curlIndex; i < curlIndex + HOMEPAGE_ARTICLE_LIMIT; i++) {
                         $resultsScience.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
@@ -119,7 +120,7 @@ function getHomeArticleAtheism() {
         error: function() {
             console.log('Some kind of error');
         },
-        success: function(data) {
+        success: function(data, curlIndex) {
             var resultsLength = data.data.children.length;
             for (var i = 0; i < HOMEPAGE_ARTICLE_LIMIT; i++) {
                 $resultsAtheism.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
@@ -129,7 +130,7 @@ function getHomeArticleAtheism() {
                 $resultsAtheism.addClass('animate-results-out').empty();
                 setTimeout(function() {
                     $resultsAtheism.removeClass('animate-results-out');
-                }, 500);
+                }, REMOVE_RESULTS_DURATION);
                 if (curlIndex < resultsLength) {
                         for (var i = curlIndex; i < curlIndex + HOMEPAGE_ARTICLE_LIMIT; i++) {
                     $resultsAtheism.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
@@ -155,7 +156,7 @@ function getHomeArticlePhilosophy() {
         error: function() {
             console.log('Some kind of error');
         },
-        success: function(data) {
+        success: function(data, curlIndex) {
             var resultsLength = data.data.children.length;
             for (var i = 0; i < HOMEPAGE_ARTICLE_LIMIT; i++) {
                 $resultsPhilosophy.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
@@ -165,7 +166,7 @@ function getHomeArticlePhilosophy() {
                 $resultsPhilosophy.addClass('animate-results-out').empty();
                 setTimeout(function() {
                     $resultsPhilosophy.removeClass('animate-results-out');
-                }, 500);
+                }, REMOVE_RESULTS_DURATION);
                 if (curlIndex < resultsLength) {
                     for (var i = curlIndex; i < curlIndex + HOMEPAGE_ARTICLE_LIMIT; i++) {
                     $resultsPhilosophy.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
@@ -191,7 +192,7 @@ function getHomeArticleTechnology() {
         error: function() {
             console.log('Some kind of error');
         },
-        success: function(data) {
+        success: function(data, curlIndex) {
             var resultsLength = data.data.children.length;
             for (var i = 0; i < HOMEPAGE_ARTICLE_LIMIT; i++) {
                 $resultsTechnology.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
@@ -201,7 +202,7 @@ function getHomeArticleTechnology() {
                 $resultsTechnology.addClass('animate-results-out').empty();
                 setTimeout(function() {
                     $resultsTechnology.removeClass('animate-results-out');
-                }, 500);
+                }, REMOVE_RESULTS_DURATION);
                 if (curlIndex < resultsLength) {
                     for (var i = curlIndex; i < curlIndex + HOMEPAGE_ARTICLE_LIMIT; i++) {
                     $resultsTechnology.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
@@ -227,7 +228,7 @@ function getHomeArticleWorldNews() {
         error: function() {
             console.log('Some kind of error');
         },
-        success: function(data) {
+        success: function(data, curlIndex) {
             var resultsLength = data.data.children.length;
             for (var i = 0; i < HOMEPAGE_ARTICLE_LIMIT; i++) {
                 $resultsWorldNews.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
@@ -237,7 +238,7 @@ function getHomeArticleWorldNews() {
                 $resultsWorldNews.addClass('animate-results-out').empty();
                 setTimeout(function() {
                     $resultsWorldNews.removeClass('animate-results-out');
-                }, 500);
+                }, REMOVE_RESULTS_DURATION);
                 if (curlIndex < resultsLength) {
                     for (var i = curlIndex; i < curlIndex + HOMEPAGE_ARTICLE_LIMIT; i++) {
                     $resultsWorldNews.append('<li><a href="' + data.data.children[i].data.url + '">' + data.data.children[i].data.title.substr(0, HOMEPAGE_ARTICLE_CHAR_LIMIT) + '</a></li>');
