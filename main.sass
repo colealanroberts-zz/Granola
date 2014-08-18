@@ -43,10 +43,10 @@ $font-family-sans: Gotham-Book, Helvetica, Arial, sans-serif
         opacity: 1
 
 .animate-results-out
-    @include animation(animation-results-out $ease-in-out-quint 325ms)
+    @include animation(animation-results-out $ease-in-out-quint 350ms)
 
 html, body
-    @include linear-gradient($brand-dark-blue, lighten($brand-dark-blue, 15%))
+    @include linear-gradient(45deg, $brand-dark-blue, lighten($brand-dark-blue, 15%))
     width: 100%
     height: 100%
     min-height: 100%
@@ -92,25 +92,18 @@ button
     background: white
     border-radius: 999px
 
-    &:before
-        top: 6px
-        width: 16px
-
-    &:after
-        top: 12px
-        width: 20px
-
     &:before, &:after
         position: absolute
         display: inline-block
         content: ''
         height: 2px
+        width: 20px
         right: 0
         background: white
         border-radius: 999px
 
 .animate-menu-icon-in
-    @include transition(all, linear, 200ms)
+    @include transition(all, linear, 150ms)
     background: transparent
 
     &:before, &:after
@@ -119,11 +112,12 @@ button
     &:before
         @include transition(all, linear, 300ms)
         @include transform(rotate(45deg))
-        top: 12px
+        top: 6px
 
     &:after
         @include transition(all, linear, 300ms)
         @include transform(rotate(-45deg))
+        top: 6px
 
 .animate-menu-icon-out
     @include transition(all, linear, 100ms)
@@ -131,11 +125,12 @@ button
     &:before
         @include transition(all, linear, 300ms)
         @include transform(rotate(0deg))
-        top: 6px
+        top: -6px
 
     &:after
         @include transition(all, linear, 300ms)
         @include transform(roate(0deg))
+        top: 6px
 
 // Animations for cards
 @include keyframes(animate-card-in)
@@ -232,9 +227,22 @@ button
     padding: 20px
 
     ul
+        margin-left: 15px
+        padding: 0
+
         li
             position: relative
-            display: block
+            display: list-item
+
+            &:before
+                position: absolute
+                display: inline-block
+                content: ''
+                top: 18px
+                left: -15px
+                width: 6px
+                height: 2px
+                background: $brand-yellow
 
             a
                 display: inline-block
@@ -284,14 +292,15 @@ button
         left: 50%
         width: 100%
         color: white
-        padding: 10px 16px
+        padding: 14px 16px
         margin-top: 10px
         text-transform: uppercase
         background: $brand-green
         border-radius: 999px
         font:
             size: em(12)
-            family: Gotham-Bold
+            family: $font-family-sans
+            weight: 700
 
 // Loading Animation
 @include keyframes(loading)
