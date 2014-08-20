@@ -254,7 +254,7 @@ button {
 
 .section-title {
   position: relative;
-  top: 100px;
+  top: 20px;
   display: block;
   z-index: 9999;
   color: white;
@@ -415,35 +415,35 @@ button {
     opacity: 1; } }
 @-webkit-keyframes animate-menu-in {
   0% {
-    -webkit-transform: scale(0.8) translate(-50%);
+    -webkit-transform: scale(0.8) translateX(-50%);
     opacity: 0; }
 
   100% {
-    -webkit-transform: scale(1) translate(-50%, -50%);
+    -webkit-transform: scale(1) translateX(-50%);
     opacity: 1; } }
 @-moz-keyframes animate-menu-in {
   0% {
-    -moz-transform: scale(0.8) translate(-50%);
+    -moz-transform: scale(0.8) translateX(-50%);
     opacity: 0; }
 
   100% {
-    -moz-transform: scale(1) translate(-50%, -50%);
+    -moz-transform: scale(1) translateX(-50%);
     opacity: 1; } }
 @keyframes animate-menu-in {
   0% {
-    -webkit-transform: scale(0.8) translate(-50%);
-    -moz-transform: scale(0.8) translate(-50%);
-    -ms-transform: scale(0.8) translate(-50%);
-    -o-transform: scale(0.8) translate(-50%);
-    transform: scale(0.8) translate(-50%);
+    -webkit-transform: scale(0.8) translateX(-50%);
+    -moz-transform: scale(0.8) translateX(-50%);
+    -ms-transform: scale(0.8) translateX(-50%);
+    -o-transform: scale(0.8) translateX(-50%);
+    transform: scale(0.8) translateX(-50%);
     opacity: 0; }
 
   100% {
-    -webkit-transform: scale(1) translate(-50%, -50%);
-    -moz-transform: scale(1) translate(-50%, -50%);
-    -ms-transform: scale(1) translate(-50%, -50%);
-    -o-transform: scale(1) translate(-50%, -50%);
-    transform: scale(1) translate(-50%, -50%);
+    -webkit-transform: scale(1) translateX(-50%);
+    -moz-transform: scale(1) translateX(-50%);
+    -ms-transform: scale(1) translateX(-50%);
+    -o-transform: scale(1) translateX(-50%);
+    transform: scale(1) translateX(-50%);
     opacity: 1; } }
 .animate-menu-in {
   -webkit-animation: animate-menu-in cubic-bezier(0.215, 0.61, 0.355, 1) 450ms;
@@ -469,11 +469,11 @@ button {
     background: rgba(255, 255, 255, 0.2); }
 
 .sign-up {
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
   -webkit-transform-origin: 0 0;
   -moz-transform-origin: 0 0;
   -ms-transform-origin: 0 0;
@@ -484,15 +484,16 @@ button {
   position: absolute;
   display: none;
   z-index: 10000;
-  top: 200px;
   left: 50%;
-  width: 500px; }
+  width: 300px; }
+  @media screen and (max-width: 480px) {
+    .sign-up {
+      max-width: auto;
+      width: calc(100% - 40px); } }
 
 .sign-up-form {
   position: relative;
-  top: 100px;
   z-index: 9999;
-  width: 60%;
   margin: 0 auto; }
   .sign-up-form .input-default {
     -webkit-transition: border-color, linear, 200ms;

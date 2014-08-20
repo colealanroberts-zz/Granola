@@ -12,6 +12,10 @@ $z-index-alpha: 9999
 $font-family-serif: 'Vollkorn', serif
 $font-family-sans: Gotham-Book, Helvetica, Arial, sans-serif
 
+$breakpoint-mobile: 480px
+$breakpoint-tablet: 800px
+$breakpoint-desktop: 920px
+
 @font-face
     font-family: Gotham-Bold
     font-weight: 600
@@ -32,6 +36,23 @@ $font-family-sans: Gotham-Book, Helvetica, Arial, sans-serif
     font-style: normal
     src: url("../fonts/Gotham-Thin/Gotham-Thin.eot")
     src: url("../fonts/Gotham-Thin/Gotham-Thin.eot?#iefix") format("embedded-opentype"), url("../fonts/Gotham-Thin/Gotham-Thin.woff") format("woff"), url("../fonts/Gotham-Thin/Gotham-Thin.ttf") format("truetype"), url("../fonts/Gotham-Thin/Gotham-Thin.svg#Gotham-Thin") format("svg")
+
+@mixin breakpoint($point)
+    @if $point == desktop
+        @media screen and (min-width: $breakpoint-desktop)
+            @content
+
+    @else if $point == tablet
+        @media screen and (max-width: $breakpoint-tablet)
+            @content
+
+    @else if $point == mobile
+        @media screen and (max-width: $breakpoint-mobile)
+            @content
+
+    @else if $point == $point
+        @media screen and (max-width: $point)
+            @content
 
 @include keyframes(animation-results-out)
     from
@@ -196,7 +217,7 @@ button
 
 .section-title
     position: relative
-    top: 100px
+    top: 20px
     display: block
     z-index: $z-index-alpha
     color: white
@@ -211,8 +232,6 @@ button
         font:
             family: $font-family-sans
             style: normal
-
-
 
 // Homepage
 .content
@@ -325,11 +344,11 @@ button
 
 @include keyframes(animate-menu-in)
     0%
-        @include transform(scale(0.8) translate(-50%))
+        @include transform(scale(0.8) translateX(-50%))
         opacity: 0
 
     100%
-        @include transform(scale(1.0) translate(-50%, -50%))
+        @include transform(scale(1.0) translateX(-50%))
         opacity: 1
 
 .animate-menu-in
@@ -356,21 +375,21 @@ button
         background: rgba(white, 0.2)
 
 .sign-up
-    @include transform(translate(-50%, -50%))
+    @include transform(translateX(-50%))
     @include transform-origin(0 0)
     @include backface-visibility(hidden)
     position: absolute
     display: none
     z-index: $z-index-alpha + 1 // Baaaaaaaaaad
-    top: 200px
     left: 50%
-    width: 500px
+    width: 300px
+    @include breakpoint(mobile)
+        max-width: auto
+        width: calc(100% - 40px)
 
 .sign-up-form
     position: relative
-    top: 100px
     z-index: $z-index-alpha
-    width: 60%
     margin: 0 auto
 
     .input-default
