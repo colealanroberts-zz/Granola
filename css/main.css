@@ -335,24 +335,25 @@ button {
       background: #f1c40f;
       border: 1px solid #f1c40f; }
   .btn-sign-up {
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    transform: translateX(-50%);
+    -webkit-transition: all, linear, 250ms;
+    -moz-transition: all, linear, 250ms;
+    transition: all, linear, 250ms;
     position: relative;
     z-index: 9999;
-    left: 50%;
     width: 100%;
     color: white;
-    padding: 14px 16px;
+    padding: 18px 50px;
     margin-top: 10px;
     text-transform: uppercase;
-    background: #27ae60;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 999px;
     font-size: 0.75em;
     font-family: Gotham-Book, Helvetica, Arial, sans-serif;
     font-weight: 700; }
+    .btn-sign-up:hover {
+      background: #27ae60;
+      border-color: #27ae60; }
 
 @-webkit-keyframes loading {
   0% {
@@ -414,45 +415,41 @@ button {
     opacity: 1; } }
 @-webkit-keyframes animate-menu-in {
   0% {
-    -webkit-transform: translateX(325px); }
+    -webkit-transform: scale(0.8) translate(-50%);
+    opacity: 0; }
 
   100% {
-    -webkit-transform: translateX(0px); } }
+    -webkit-transform: scale(1) translate(-50%, -50%);
+    opacity: 1; } }
 @-moz-keyframes animate-menu-in {
   0% {
-    -moz-transform: translateX(325px); }
+    -moz-transform: scale(0.8) translate(-50%);
+    opacity: 0; }
 
   100% {
-    -moz-transform: translateX(0px); } }
+    -moz-transform: scale(1) translate(-50%, -50%);
+    opacity: 1; } }
 @keyframes animate-menu-in {
   0% {
-    -webkit-transform: translateX(325px);
-    -moz-transform: translateX(325px);
-    -ms-transform: translateX(325px);
-    -o-transform: translateX(325px);
-    transform: translateX(325px); }
+    -webkit-transform: scale(0.8) translate(-50%);
+    -moz-transform: scale(0.8) translate(-50%);
+    -ms-transform: scale(0.8) translate(-50%);
+    -o-transform: scale(0.8) translate(-50%);
+    transform: scale(0.8) translate(-50%);
+    opacity: 0; }
 
   100% {
-    -webkit-transform: translateX(0px);
-    -moz-transform: translateX(0px);
-    -ms-transform: translateX(0px);
-    -o-transform: translateX(0px);
-    transform: translateX(0px); } }
+    -webkit-transform: scale(1) translate(-50%, -50%);
+    -moz-transform: scale(1) translate(-50%, -50%);
+    -ms-transform: scale(1) translate(-50%, -50%);
+    -o-transform: scale(1) translate(-50%, -50%);
+    transform: scale(1) translate(-50%, -50%);
+    opacity: 1; } }
 .animate-menu-in {
-  -webkit-animation: animate-menu-in cubic-bezier(0.86, 0, 0.07, 1) 425ms;
-  -moz-animation: animate-menu-in cubic-bezier(0.86, 0, 0.07, 1) 425ms;
-  animation: animate-menu-in cubic-bezier(0.86, 0, 0.07, 1) 425ms;
+  -webkit-animation: animate-menu-in cubic-bezier(0.215, 0.61, 0.355, 1) 450ms;
+  -moz-animation: animate-menu-in cubic-bezier(0.215, 0.61, 0.355, 1) 450ms;
+  animation: animate-menu-in cubic-bezier(0.215, 0.61, 0.355, 1) 450ms;
   display: block; }
-
-.animate-menu-out {
-  -webkit-transition: all, cubic-bezier(0.86, 0, 0.07, 1), 425ms;
-  -moz-transition: all, cubic-bezier(0.86, 0, 0.07, 1), 425ms;
-  transition: all, cubic-bezier(0.86, 0, 0.07, 1), 425ms;
-  -webkit-transform: translateX(325px);
-  -moz-transform: translateX(325px);
-  -ms-transform: translateX(325px);
-  -o-transform: translateX(325px);
-  transform: translateX(325px); }
 
 .section-type {
   padding: 0;
@@ -472,18 +469,24 @@ button {
     background: rgba(255, 255, 255, 0.2); }
 
 .sign-up {
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  transform-origin: 0 0;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  position: fixed;
+  position: absolute;
   display: none;
   z-index: 10000;
-  top: 0;
-  right: 0;
-  width: 325px;
-  height: 100%;
-  min-height: 100%;
-  overflow-x: hidden;
-  background: -webkit-linear-gradient(#080b0e, #233140); }
+  top: 200px;
+  left: 50%;
+  width: 500px; }
 
 .sign-up-form {
   position: relative;

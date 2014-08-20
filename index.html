@@ -1,77 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>The Granola | Become Informed</title>
-    <link href='http://fonts.googleapis.com/css?family=Vollkorn:400italic,400' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/main.css">
+<html ng-app="granola" lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>The Granola | Become Informed</title>
+        <link href='http://fonts.googleapis.com/css?family=Vollkorn:400italic,400' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/main.css">
+    </head>
     <nav class="navbar">
-        <a href="#" class="btn btn-hamburger">
+        <a href="#login" class="btn btn-hamburger">
             <div class="menu-icon animate-menu-icon-out"></div>
         </a>
     </nav>
-    <main>
-        <section class="home">
-            <div class="card science">
-                <p class="section-title">Science</p>
-                <div class="content">
-                    <p class="section-type">Featured</p>
-                    <ul class="results results--science"></ul>
-                    <a href="#" class="btn btn-read-more">Read More Articles</a>
-                </div>
-            </div>
-            <div class="card atheism">
-                <p class="section-title">Atheism</p>
-                <div class="content">
-                    <p class="section-type">Featured</p>
-                    <ul class="results results--atheism"></ul>
-                    <a href="#" class="btn btn-read-more">Read More Articles</a>
-                </div>
-            </div>
-            <div class="card philosophy">
-                <p class="section-title">Philosophy</p>
-                <div class="content">
-                    <p class="section-type">Featured</p>
-                    <ul class="results results--philosophy"></ul>
-                    <a href="#" class="btn btn-read-more">Read More Articles</a>
-                </div>
-            </div>
-            <div class="card technology">
-                <p class="section-title">Technology</p>
-                <div class="content">
-                    <p class="section-type">Featured</p>
-                    <ul class="results results--technology"></ul>
-                    <a href="#" class="btn btn-read-more">Read More Articles</a>
-                </div>
-            </div>
-            <div class="card world-news">
-                <p class="section-title">World News</p>
-                <div class="content">
-                    <p class="section-type">Featured</p>
-                    <ul class="results results--world-news"></ul>
-                    <a href="#" class="btn btn-read-more">Read More Articles</a>
-                </div>
-            </div>
-            <aside class="sign-up animate-menu-out">
-                <p class="section-title section-title--sign-up">Sign Up</p>
-                <div class="sign-up-form">
-                    <form>
-                        <input type="text" name="firstName" placeholder="First Name" id="input-user-first-name" autocomplete="off" class="input-default">
-                        <input type="text" name="surName" placeholder="Last Name" id="input-user-last-name" autocomplete="off" class="input-default">
-                        <input type="text" name="email" placeholder="Email" id="input-user-email" autocomplete="off" class="input-default">
-                        <input type="password" name="password" placeholder="Password" id="input-user-password" autocomplete="off" class="input-default">
-                        <input type="password" name="passwordAgain" placeholder="Password Again" id="input-user-password-again" autocomplete="off" class="input-default">
-                        <button type="submit" class="btn btn-sign-up">Sign Up</button>
-                        <p class="sign-up-feedback"></p>
-                    </form>
-                </div>
-            </aside>
-        </section>
-    </main>
-</head>
-<body>
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script type="text/javascript" src="js/min/mousewheel.min.js"></script>
-<script src="js/main.js"></script>
-</body>
+    <body ng-controller="homeController">
+        <div class="main">
+            <div ng-view></div>
+        </div>
+
+        <!-- Le JS -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="js/min/mousewheel.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/script.js"></script>
+    </body>
 </html>

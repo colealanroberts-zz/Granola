@@ -286,21 +286,25 @@ button
             border: 1px solid $brand-yellow
 
     &-sign-up
-        @include transform(translateX(-50%))
+        @include transition(all, linear, 250ms)
         position: relative
         z-index: $z-index-alpha
-        left: 50%
         width: 100%
         color: white
-        padding: 14px 16px
+        padding: 18px 50px
         margin-top: 10px
         text-transform: uppercase
-        background: $brand-green
+        background: transparent
+        border: 1px solid rgba(white, 0.5)
         border-radius: 999px
         font:
             size: em(12)
             family: $font-family-sans
             weight: 700
+
+        &:hover
+            background: $brand-green
+            border-color: $brand-green
 
 // Loading Animation
 @include keyframes(loading)
@@ -321,18 +325,16 @@ button
 
 @include keyframes(animate-menu-in)
     0%
-        @include transform(translateX(325px))
+        @include transform(scale(0.8) translate(-50%))
+        opacity: 0
 
     100%
-        @include transform(translateX(0px))
+        @include transform(scale(1.0) translate(-50%, -50%))
+        opacity: 1
 
 .animate-menu-in
-    @include animation(animate-menu-in $ease-in-out-quint 425ms)
+    @include animation(animate-menu-in $ease-out-cubic 450ms)
     display: block
-
-.animate-menu-out
-    @include transition(all, $ease-in-out-quint, 425ms)
-    @include transform(translateX(325px))
 
 .section-type
     padding: 0
@@ -354,17 +356,15 @@ button
         background: rgba(white, 0.2)
 
 .sign-up
+    @include transform(translate(-50%, -50%))
+    @include transform-origin(0 0)
     @include backface-visibility(hidden)
-    position: fixed
+    position: absolute
     display: none
     z-index: $z-index-alpha + 1 // Baaaaaaaaaad
-    top: 0
-    right: 0
-    width: 325px
-    height: 100%
-    min-height: 100%
-    overflow-x: hidden
-    background: -webkit-linear-gradient($brand-dark-blue, lighten($brand-dark-blue, 15%))
+    top: 200px
+    left: 50%
+    width: 500px
 
 .sign-up-form
     position: relative
