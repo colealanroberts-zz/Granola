@@ -4,7 +4,7 @@ var ARTICLE_REQUEST_AMOUNT = 50;
 var HOMEPAGE_ARTICLE_CHAR_LIMIT = 140;
 var MENU_ANIMATION_DELAY = 100;
 var CARD_ANIMATE_DURATION = 300;
-var REMOVE_RESULTS_DURATION = 325
+var REMOVE_RESULTS_DURATION = 325;
 
 function scrollDoc() {
     $(window).mousewheel(function(event, delta) {
@@ -33,7 +33,7 @@ function showMenu() {
 function playCardAnimation() {
     $('.card').css({opacity: 0});
     (function _loop(i) {
-        $card = $('.card');
+        var $card = $('.card');
         $card.eq(i).addClass('animate-card-in').css({opacity: 1});
         setTimeout(function() {
             _loop((i + 1) % $card.length);
@@ -84,6 +84,7 @@ function getHomeArticleScience() {
             console.log('Some kind of error');
         },
         success: function(data, curlIndex) {
+            console.log(data);
             playCardAnimation();
             var resultsLength = data.data.children.length;
             for (var i = 0; i < HOMEPAGE_ARTICLE_LIMIT; i++) {

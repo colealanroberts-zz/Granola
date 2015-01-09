@@ -6,7 +6,7 @@ granola.config(function($routeProvider) {
 
     .when('/', {
         templateUrl : 'templates/home.html',
-        controller  : 'mainController'
+        controller  : 'homeController'
     })
 
     .when('/login', {
@@ -17,10 +17,7 @@ granola.config(function($routeProvider) {
 });
 
 granola.controller('homeController', function($scope) {
-    $scope.message = 'Home!';
+
 });
 
-granola.controller('loginControler', function($scope) {
-    $scope.message = 'Login!';
-});
 
